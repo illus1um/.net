@@ -1,0 +1,78 @@
+﻿@model TableTennis.Models.Result
+@{
+    ViewData["Title"] = "Edit Result";
+    var players = ViewBag.Players as List<TableTennis.Models.Player>;
+}
+
+<h2 class="mt-5">Редактировать результат</h2>
+
+<form asp-action="Edit">
+    <div class="form-group col-md-2">
+        <label asp-for="DateTime" class="control-label">Дата и Время</label>
+        <input asp-for="DateTime" class="form-control" type="datetime-local" value="@Model.DateTime.ToString("yyyy-MM-ddTHH:mm")" />
+        <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="form-group">
+                <label for="player1">Игрок 1</label>
+                <select id="player1" class="form-control" asp-for="Player1" name="Player1" required>
+                    <option value="" selected>...</option>
+                    @foreach (var player in players)
+                    {
+                        @if (player.Name == Model.Player1)
+                        {
+                            <option value="@player.Name" selected>@player.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@player.Name">@player.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label for="player2">Игрок 2</label>
+                <select id="player2" class="form-control" asp-for="Player2" name="Player2" required>
+                    <option value="" selected>...</option>
+                    @foreach (var player in players)
+                    {
+                        @if (player.Name == Model.Player2)
+                        {
+                            <option value="@player.Name" selected>@player.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@player.Name">@player.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group mb-2">
+        <label asp-for="Score" class="control-label">Счет</label>
+        <select asp-for="Score" class="form-control" required>
+            <option value="">---</option>
+            @foreach (var score in new[] { "4-0", "4-1", "4-2", "4-3", "0-4", "1-4", "2-4", "3-4", "3-0", "3-1", "3-2", "0-3", "1-3", "2-3" })
+            {
+                @if (Model.Score == score)
+                {
+                    <option value="@score" selected>@score</option>
+                }
+                else
+                {
+                    <option value="@score">@score</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="Score" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-primary me-2" />
+        <a asp-action="Index">Вернуться к списку</a>
+    </div>
+</form>

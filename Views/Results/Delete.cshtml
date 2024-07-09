@@ -1,0 +1,42 @@
+﻿@model TableTennis.Models.Result
+
+@{
+    ViewData["Title"] = "Delete Result";
+}
+
+<h2 class="mt-5">Удалить Результат</h2>
+
+<h4>Вы уверены, что хотите это удалить?</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        Игрок-1
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Player1)
+    </dd>
+    <dt class="col-sm-2">
+        Игрок-2
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Player2)
+    </dd>
+    <dt class="col-sm-2">
+        Счет
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Score)
+    </dd>
+    <dt class="col-sm-2">
+        Дата и Время
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DateTime)
+    </dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Удалить" class="btn btn-danger me-2" />
+    <a asp-action="Index">Вернуться к списку</a>
+</form>

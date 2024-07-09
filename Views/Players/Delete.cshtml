@@ -1,0 +1,24 @@
+﻿@model TableTennis.Models.Player
+
+@{
+    ViewData["Title"] = "Delete Player";
+}
+
+<h2 class="mt-5">Удалить Игрока</h2>
+
+<h4>Вы уверены, что хотите удалить этого игрока?</h4>
+<hr />
+<dl class="row">
+    <dd class="">
+        <strong>Имя:</strong> @Html.DisplayFor(model => model.Name)
+    </dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Удалить" class="btn btn-danger mb-2"/>
+</form>
+
+<div>
+    <a asp-action="Index">Вернуться к списку</a>
+</div>
